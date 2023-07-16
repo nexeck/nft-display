@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Connected } from "@/components/Connected";
+import { Connected } from "@/components/Connected/Connected";
 import { NFTTable } from "@/components/NFTTable/NFTTable";
 
 import Box from "@mui/material/Box";

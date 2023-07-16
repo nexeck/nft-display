@@ -6,9 +6,10 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 import { Providers } from "@/components/Wagmi/providers";
-import { ConnectButton } from "@/components/ConnectButton";
+import { ConnectButton } from "@/components/ConnectButton/ConnectButton";
 
 export const metadata: Metadata = {
   title: "NFT Display",
@@ -24,19 +25,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <ThemeRegistry>
             <Box sx={{ display: "flex" }}>
-              <AppBar position="fixed" sx={{ zIndex: 2000 }}>
-                <Toolbar sx={{ backgroundColor: "background.paper" }}>
-                  <Button href="/" sx={{ flexGrow: 1 }}>
-                    Table
-                  </Button>
-                  <Button href="/showroom" sx={{ flexGrow: 1 }}>
-                    Showroom
-                  </Button>
-                  <Box sx={{ textAlign: "right" }}>
-                    <ConnectButton />
-                  </Box>
-                </Toolbar>
-              </AppBar>
+              <Box>
+                <AppBar position="fixed" sx={{ zIndex: 2000 }}>
+                  <Toolbar sx={{ backgroundColor: "background.paper" }}>
+                    <Link href="/" sx={{ flexGrow: 1 }}>
+                      <Button>Table</Button>
+                    </Link>
+                    <Link href="/showroom" sx={{ flexGrow: 1 }}>
+                      <Button>Showroom</Button>
+                    </Link>
+                    <Box sx={{ textAlign: "right" }}>
+                      <ConnectButton />
+                    </Box>
+                  </Toolbar>
+                </AppBar>
+              </Box>
               <Box
                 component="main"
                 sx={{
