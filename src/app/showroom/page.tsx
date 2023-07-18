@@ -5,7 +5,6 @@ import * as R from "ramda";
 import { Lightbox, Slide } from "yet-another-react-lightbox";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Video from "yet-another-react-lightbox/plugins/video";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import "yet-another-react-lightbox/styles.css";
 import { useSearchParams } from "next/navigation";
 import { GetNftMetadataBatch, QueryTokens } from "@/actions/alchemy";
@@ -50,7 +49,7 @@ export default function Showroom() {
       setNftSlides(slides);
       setOpen(true);
     });
-  }, [searchTokens, searchConfig]);
+  }, [searchTokens, searchConfig, initialConfig]);
 
   return (
     <Box

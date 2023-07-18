@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getNftsForOwner } from "@/lib/alchemy";
+import { getEthereumNftsForOwner } from "@/lib/alchemy";
 import { OwnedNft } from "alchemy-sdk";
 import { DelegateCash } from "delegatecash";
 import { getServerSession } from "next-auth";
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
 
   await Promise.all(
     addresses.map(async (address) => {
-      const data = await getNftsForOwner(address);
+      const data = await getEthereumNftsForOwner(address);
       ownedNfts.push(...data.ownedNfts);
     })
   );
