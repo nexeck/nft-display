@@ -25,12 +25,12 @@ export default function Showroom() {
   const [open, setOpen] = React.useState(false);
 
   const searchParams = useSearchParams();
-  const searchTokens = searchParams.get("tokens");
-  const searchConfig = searchParams.get("config");
+  const searchTokens = searchParams.get("tokens") || "[]";
+  const searchConfig = searchParams.get("config") || JSON.stringify(config);
 
   React.useEffect(() => {
-    let tokens: QueryTokens = JSON.parse(searchTokens || "[]");
-    setConfig(JSON.parse(searchConfig || JSON.stringify(initialConfig)));
+    let tokens: QueryTokens = JSON.parse(searchTokens);
+    setConfig(JSON.parse(searchConfig);
     GetNftMetadataBatch(tokens).then((nfts) => {
       let slides: Slide[] = [];
       nfts.map((nft) => {
@@ -49,7 +49,7 @@ export default function Showroom() {
       setNftSlides(slides);
       setOpen(true);
     });
-  }, [searchTokens, searchConfig, initialConfig]);
+  }, [searchTokens, searchConfig, config]);
 
   return (
     <Box
