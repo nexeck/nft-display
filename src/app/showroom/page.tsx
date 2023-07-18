@@ -26,7 +26,7 @@ export default function Showroom() {
 
   const searchParams = useSearchParams();
   const searchTokens = searchParams.get("tokens") || "[]";
-  const searchConfig = searchParams.get("config") || JSON.stringify(config);
+  const searchConfig = searchParams.get("config") || JSON.stringify(initialConfig);
 
   React.useEffect(() => {
     let tokens: QueryTokens = JSON.parse(searchTokens);
@@ -49,7 +49,7 @@ export default function Showroom() {
       setNftSlides(slides);
       setOpen(true);
     });
-  }, [searchTokens, searchConfig, config]);
+  }, [searchTokens, searchConfig]);
 
   return (
     <Box
