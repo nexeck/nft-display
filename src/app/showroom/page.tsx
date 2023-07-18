@@ -30,7 +30,7 @@ export default function Showroom() {
 
   React.useEffect(() => {
     let tokens: QueryTokens = JSON.parse(searchTokens);
-    setConfig(JSON.parse(searchConfig);
+    setConfig(JSON.parse(searchConfig));
     GetNftMetadataBatch(tokens).then((nfts) => {
       let slides: Slide[] = [];
       nfts.map((nft) => {
