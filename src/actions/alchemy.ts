@@ -1,6 +1,6 @@
 "use server";
 
-import { getNftsForOwner, getNftMetadataBatch } from "@/lib/alchemy";
+import { getEthereumNftsForOwner, getPolygonNftsForOwner, getNftMetadataBatch } from "@/lib/alchemy";
 import { OwnedNft, NftMetadataBatchToken, Nft } from "alchemy-sdk";
 import { DelegateCash } from "delegatecash";
 import { getServerSession } from "next-auth";
@@ -34,10 +34,16 @@ export async function GetOwnedNfts(): Promise<OwnedNft[]> {
     addresses.map(async (address) => {
       let pageKey: string | undefined = undefined;
       do {
-        const data = await getNftsForOwner(address, pageKey);
+        const data = await getEthereumNftsForOwner(address, pageKey);
         ownedNfts.push(...data.ownedNfts);
         pageKey = data.pageKey;
       } while (pageKey);
+      /*pageKey = undefined;
+      do {
+        const data = await getPolygonNftsForOwner(address, pageKey);
+        ownedNfts.push(...data.ownedNfts);
+        pageKey = data.pageKey;
+      } while (pageKey);*/
     })
   );
   return ownedNfts;

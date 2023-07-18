@@ -1,24 +1,32 @@
 import { Network, Alchemy, NftMetadataBatchToken } from "alchemy-sdk";
 import { cache } from "react";
 
-export const getNftsForOwner = cache(async (address: string, pageKey?: string) => {
+const getEthereumAlchemy = (): Alchemy => {
   const settings = {
-    apiKey: process.env.ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-    network: Network.ETH_MAINNET, // Replace with your network.
+    apiKey: process.env.ALCHEMY_ETHEREUM_API_KEY,
+    network: Network.ETH_MAINNET,
   };
 
-  const alchemy = new Alchemy(settings);
+  return new Alchemy(settings);
+};
 
-  return await alchemy.nft.getNftsForOwner(address, { pageKey: pageKey });
+const getPolygonAlchemy = (): Alchemy => {
+  const settings = {
+    apiKey: process.env.ALCHEMY_POLYGON_API_KEY,
+    network: Network.MATIC_MAINNET,
+  };
+
+  return new Alchemy(settings);
+};
+
+export const getEthereumNftsForOwner = cache(async (address: string, pageKey?: string) => {
+  return await getEthereumAlchemy().nft.getNftsForOwner(address, { pageKey: pageKey });
+});
+
+export const getPolygonNftsForOwner = cache(async (address: string, pageKey?: string) => {
+  return await getPolygonAlchemy().nft.getNftsForOwner(address, { pageKey: pageKey });
 });
 
 export const getNftMetadataBatch = cache(async (tokens: Array<NftMetadataBatchToken>) => {
-  const settings = {
-    apiKey: process.env.ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-    network: Network.ETH_MAINNET, // Replace with your network.
-  };
-
-  const alchemy = new Alchemy(settings);
-
-  return await alchemy.nft.getNftMetadataBatch(tokens);
+  return await getEthereumAlchemy().nft.getNftMetadataBatch(tokens);
 });

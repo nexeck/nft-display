@@ -31,13 +31,12 @@ export function NFTTable() {
   const apiRef = useGridApiRef();
 
   React.useEffect(() => {
-    GetOwnedNfts().then((value) => {
-      setOwnedNfts(value);
+    GetOwnedNfts().then((nfts) => {
+      setOwnedNfts(nfts);
     });
   }, []);
 
   React.useEffect(() => {
-    //console.log(apiRef.current.getSelectedRows());
     let tokens = new Map<string, string[]>();
     let newQueryTokens: QueryTokens = [];
 
