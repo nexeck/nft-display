@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import * as R from "ramda";
 import { Lightbox, Slide } from "yet-another-react-lightbox";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Video from "yet-another-react-lightbox/plugins/video";
